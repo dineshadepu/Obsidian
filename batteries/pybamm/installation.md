@@ -43,7 +43,7 @@ conda activate pybamm
 #pybamm-installation 
 
 ### Install `pybamm` from source. 
-
+#install-locally #python-install-from-source
 1. Clone the source
 2. Change the directory
 3. Install the package
@@ -64,13 +64,6 @@ From `pip`
 ```sh
 pip install pybamm
 ```
-
-
-
-
-
-
-
 
 
 

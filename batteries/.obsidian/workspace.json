@@ -4,35 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b46bd1917709a704",
+        "id": "34dac1424633fbc4",
         "type": "tabs",
         "children": [
           {
-            "id": "d284f0afbb237683",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Goals.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "edce616800a0f601",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "pybamm/installation.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "46a8020429d4ebf8",
+            "id": "022f37254522821a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -43,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -90,7 +65,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -172,12 +148,12 @@
       "latex-ocr:LatexOCR": false
     }
   },
-  "active": "46a8020429d4ebf8",
+  "active": "022f37254522821a",
   "lastOpenFiles": [
     "pybamm/installation.md",
     "pybamm/Getting started on pybamm (101).md",
-    "pybamm",
     "Goals.md",
+    "pybamm",
     "Welcome.md"
   ]
 }

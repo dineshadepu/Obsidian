@@ -46,3 +46,4 @@ dist/
 *_output
 manuscript/figures/*.png
 .tmp*
+plugins/

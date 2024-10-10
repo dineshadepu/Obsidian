@@ -152,6 +152,185 @@ parameter_values = pybamm.ParameterValues(
 ```
 These parameter set has both constant and variable parameters.
 
+# Tutorial 5: Running experiments
+#pybamm-example #pybamm-running-experiments #pybamm-getting-started-05
+
+The experiments in `pybamm` are run based on set of instruction which can be given:
+```python
+"Discharge at 1C for 0.5 hours",
+"Discharge at C/20 for 0.5 hours",
+"Charge at 0.5 C for 45 minutes",
+"Discharge at 1 A for 90 seconds",
+"Charge at 200mA for 45 minutes",
+"Discharge at 1 W for 0.5 hours",
+"Charge at 200 mW for 45 minutes",
+"Rest for 10 minutes",
+"Hold at 1 V for 20 seconds",
+"Charge at 1 C until 4.1V",
+"Hold at 4.1 V until 50 mA",
+"Hold at 3V until C/50",
+```
+
+These instructions are put together and an experiment object is created
+
+#pybamm-create-experiment
+```python
+experiment = pybamm.Experiment(
+    [
+        "Discharge at C/10 for 10 hours or until 3.3 V",
+        "Rest for 1 hour",
+        "Charge at 1 A until 4.1 V",
+        "Hold at 4.1 V until 50 mA",
+        "Rest for 1 hour",
+    ]
+)
+```
+
+We can repeat a given experiment any number of times, by creating a list of lists as follows:
+
+```python
+experiment = pybamm.Experiment(
+    [
+        (
+            "Discharge at C/10 for 10 hours or until 3.3 V",
+            "Rest for 1 hour",
+            "Charge at 1 A until 4.1 V",
+            "Hold at 4.1 V until 50 mA",
+            "Rest for 1 hour",
+        )
+    ]
+    * 3
+    + [
+        "Discharge at 1C until 3.3 V",
+    ]
+)
+```
+
+Using this experiment object we can create our simulation as follows:
+#pybamm-simulation-with-experiment
+
+```python
+model = pybamm.lithium_ion.DFN()
+sim = pybamm.Simulation(model, experiment=experiment)
+sim.solve()
+sim.plot()
+```
+
+As part of plotting the results, we can select a given cycle out of all the cycles. 
+#pybamm-plotting-cycle
+
+```python
+sim.solution.cycles[0].plot()
+```
+
+# Tutorial 6 - Managing simulation outputs
+#pybamm-example #pybamm-simulation-output #pybamm-getting-started-06
+
+We can get the output of a given experiment as follows
+```python
+solution = sim.solution
+```
+
+or the `solve` command of `simulation` returns `solution`
+```python
+solution = sim.solve([0, 3600])
+```
+
+We use the `solution` object to plot our results, one can get the requisite variables to plot using 
+solution object as follows:
+```python
+t = solution["Time [s]"]
+V = solution["Voltage [V]"]
+```
+However, the `V` voltage parameter is only given at the discretised time of `t`. We can get voltage
+`V` values at different times from extrapolation as follows
+#pybamm-output-different-time
+```python
+V([200, 400, 780, 1236])  # times in seconds
+```
+
+## Load simulation and save simulation
+#pybamm-load-simulation #pybamm-save-simulation
+
+The simulation of a given experiment can be saved by
+```python
+sim.save("SPMe.pkl")
+```
+Similarly, one can load by
+```python
+sol2 = pybamm.load("SPMe_sol.pkl")
+sol2.plot()
+```
+Or one can selectively save specific variables or parameters only rather than the whole
+simulation
+#pybamm-save-some-parameters
+```python
+sol = sim.solution
+sol.save_data("sol_data.pkl", ["Current [A]", "Voltage [V]"])
+```
+
+Before we finish, if we need to delete any simulation data saved on the disc we can use the 
+following command:
+
+```python
+import os
+
+os.remove("SPMe.pkl")
+os.remove("SPMe_sol.pkl")
+os.remove("sol_data.pkl")
+os.remove("sol_data.csv")
+os.remove("sol_data.mat")
+```
+## Model options - Tutorial 7
+#pybamm-example #pybamm-model-options #pybamm-getting-started-07
+We have so many models in `pybamm`, we can add these multiphysics model to the models like following. Here for `SPMe` , we add thermal model
+```python
+options = {"thermal": "lumped"}
+```
+
+you have several options for a given model, change it!
+
+## Model options - Tutorial 8
+#pybamm-example #pybamm-solver-options #pybamm-getting-started-08
+
+The solver in `pybamm` is similar to any other solver other softwares provide. `Tolerance`, 
+`time step`, and other options a typical `solver` takes care of. As an example, here we create 
+two solvers, `fast` and `slow`
+
+```python
+model = pybamm.lithium_ion.DFN()
+param = model.default_parameter_values
+param["Lower voltage cut-off [V]"] = 3.6
+safe_solver = pybamm.CasadiSolver(atol=1e-3, rtol=1e-3, mode="safe")
+fast_solver = pybamm.CasadiSolver(atol=1e-3, rtol=1e-3, mode="fast")
+# create simulations
+safe_sim = pybamm.Simulation(model, parameter_values=param, solver=safe_solver)
+fast_sim = pybamm.Simulation(model, parameter_values=param, solver=fast_solver)
+
+# solve
+safe_sim.solve([0, 3600])
+print(f"Safe mode solve time: {safe_sim.solution.solve_time}")
+fast_sim.solve([0, 3600])
+print(f"Fast mode solve time: {fast_sim.solution.solve_time}")
+
+# plot solutions
+pybamm.dynamic_plot([safe_sim, fast_sim])
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

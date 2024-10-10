@@ -65,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -130,12 +129,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 484.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -150,9 +149,9 @@
   },
   "active": "022f37254522821a",
   "lastOpenFiles": [
-    "pybamm/installation.md",
     "pybamm/Getting started on pybamm (101).md",
     "Goals.md",
+    "pybamm/installation.md",
     "pybamm",
     "Welcome.md"
   ]

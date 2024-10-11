@@ -13,13 +13,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "pybamm/Getting started on pybamm (101).md",
+                "file": "Goals.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "87ba1ced9939db69",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "moose/Installation.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "98487be413b7640c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "phase-field modeling/resources.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -69,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "f077042992e38315",
@@ -85,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "pybamm/Getting started on pybamm (101).md",
+                "file": "phase-field modeling/resources.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "pybamm/Getting started on pybamm (101).md",
+                "file": "phase-field modeling/resources.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "pybamm/Getting started on pybamm (101).md"
+                "file": "phase-field modeling/resources.md"
               }
             }
           }
@@ -134,7 +159,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 484.5
+    "width": 400.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -147,10 +172,16 @@
       "latex-ocr:LatexOCR": false
     }
   },
-  "active": "022f37254522821a",
+  "active": "98487be413b7640c",
   "lastOpenFiles": [
-    "pybamm/Getting started on pybamm (101).md",
+    "moose/Installation.md",
     "Goals.md",
+    "phase-field modeling/resources.md",
+    "phase-field modeling",
+    "moose/Untitled.md",
+    "moose/Untitled 1.md",
+    "moose",
+    "pybamm/Getting started on pybamm (101).md",
     "pybamm/installation.md",
     "pybamm",
     "Welcome.md"

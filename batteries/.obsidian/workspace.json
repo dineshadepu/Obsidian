@@ -81,12 +81,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "phase-field modeling/resources.md",
+                "file": "moose/Tutorial.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "resources"
+              "title": "Tutorial"
             }
           }
         ],
@@ -142,11 +142,13 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "f077042992e38315",
@@ -219,7 +221,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 400.5
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -234,10 +237,10 @@
   },
   "active": "3c99062ff9c4bdc1",
   "lastOpenFiles": [
-    "moose/Tutorial.md",
-    "moose/Installation.md",
     "Generating latex from images.md",
+    "moose/Tutorial.md",
     "phase-field modeling/resources.md",
+    "moose/Installation.md",
     "Goals.md",
     "phase-field modeling",
     "moose/Untitled 1.md",

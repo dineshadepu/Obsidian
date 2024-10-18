@@ -1,0 +1,1 @@
+(\nabla\phi_{i},\nabla u_{h})+({\vec{v}}\cdot\nabla u,\phi_{i})=0\quad\forall\phi_{i}

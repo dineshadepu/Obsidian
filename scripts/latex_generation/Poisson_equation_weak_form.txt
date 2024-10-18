@@ -1,0 +1,1 @@
+\left(\nabla\phi_{i},\nabla u_{h}\right)=0\quad\forall\phi_{i}

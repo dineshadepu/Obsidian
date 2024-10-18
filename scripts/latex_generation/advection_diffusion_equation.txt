@@ -1,0 +1,1 @@
+-\nabla\cdot\nabla u+\vec{v}\cdot\nabla u=0

@@ -81,12 +81,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "moose/Tutorial.md",
+                "file": "phase-field modeling/resources.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tutorial"
+              "title": "resources"
             }
           }
         ],
@@ -142,13 +142,11 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "f077042992e38315",
@@ -237,8 +235,8 @@
   },
   "active": "3c99062ff9c4bdc1",
   "lastOpenFiles": [
-    "Generating latex from images.md",
     "moose/Tutorial.md",
+    "Generating latex from images.md",
     "phase-field modeling/resources.md",
     "moose/Installation.md",
     "Goals.md",

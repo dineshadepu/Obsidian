@@ -4,3 +4,4 @@
 4. https://icmed.engin.umich.edu/wp-content/uploads/sites/176/2016/06/Summer-School-MOOSE-talk-2016-small.pdf Phase field modelling of Cahn-Hilliard equation in moose by INL.
 5. https://github.com/BattModels/electrodep
 6. Alamo software https://www.solids.group/alamo/ 
+7. Using the Multiphysics Object Oriented Simulation Environment (MOOSE): Part 1 

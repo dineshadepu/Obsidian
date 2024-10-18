@@ -91,4 +91,194 @@ $$
 (\nabla\phi_{i},\nabla u_{h})+({\vec{v}}\cdot\nabla u,\phi_{i})=0\quad\forall\phi_{i}
 $$
 
-This example is different from the previous one, by the advection term.
+This example is different from the previous one, by the advection term. To add the advection term, we have to add kernels to the moose files. This is done as following:
+
+#moose/kernel/convection #moose/kernel/advection
+```cpp
+#pragma once
+
+#include "Kernel.h"
+
+class ExampleConvection : public Kernel
+{
+public:
+  ExampleConvection(const InputParameters & parameters);
+  static InputParameters validParams();
+
+protected:
+  virtual Real computeQpResidual() override;
+  virtual Real computeQpJacobian() override;
+
+private:
+  RealVectorValue _velocity;
+};
+```
+
+
+```cpp
+#include "ExampleConvection.h"
+
+registerMooseObject("ExampleApp", ExampleConvection);
+
+
+InputParameters
+ExampleConvection::validParams()
+{
+  InputParameters params = Kernel::validParams();
+  params.addRequiredParam<RealVectorValue>("velocity", "Velocity Vector");
+  return params;
+}
+
+ExampleConvection::ExampleConvection(const InputParameters & parameters)
+  : // You must call the constructor of the base class first
+    Kernel(parameters),
+    _velocity(getParam<RealVectorValue>("velocity"))
+{
+}
+
+Real
+ExampleConvection::computeQpResidual()
+{
+  // velocity * _grad_u[_qp] is actually doing a dot product
+  return _test[_i][_qp] * (_velocity * _grad_u[_qp]);
+}
+
+Real
+ExampleConvection::computeQpJacobian()
+{
+  // the partial derivative of _grad_u is just _grad_phi[_j]
+  return _test[_i][_qp] * (_velocity * _grad_phi[_j][_qp]);
+}
+```
+
+
+This is reflected in the input file as follows:
+```
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = convected
+  [../]
+  [./conv]
+    type = ExampleConvection
+    variable = convected
+    velocity = '0.0 0.0 1.0'
+  [../]
+[]
+```
+
+# Example 3: Multiphysics coupling
+#moose/tutorial/example3 #problem/advection_diffusion_variable #moose/add_kernel/convection #problem/multiphysics #moode/two_variables
+
+Problem statement: To-be done 
+
+In the current problem, we have two variables, where one variable has diffusion (v) and the other variable has both convection and diffusion (u). While the convection of variable (u) is driven by variable (v). To handle this problem, we need to add a new kernel, where the convection of (u) is 
+while considering the other variable.
+
+Before discussing the kernel code, lets see how the input file would look like. Define the two variables first.
+```
+[Variables]
+  [./convected]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./diffused]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+```
+
+Then create the kernels
+```text
+[Kernels]
+  [./diff_convected]
+    type = Diffusion
+    variable = convected
+  [../]
+
+  [./conv]
+    type = ExampleConvection
+    variable = convected
+
+    # Couple a variable into the convection kernel using local_name = simulationg_name syntax
+    some_variable = diffused
+  [../]
+
+  [./diff_diffused]
+    type = Diffusion
+    variable = diffused
+  [../]
+[]
+```
+
+The convection part of the (u) variable is added with the use of the following kernel
+
+```cpp
+#pragma once
+
+#include "Kernel.h"
+
+class ExampleConvection : public Kernel
+{
+public:
+  ExampleConvection(const InputParameters & parameters);
+
+  static InputParameters validParams();
+
+protected:
+  virtual Real computeQpResidual() override;
+
+  virtual Real computeQpJacobian() override;
+
+private:
+  const VariableGradient & _grad_some_variable;
+};
+```
+
+And the corresponding c file would be
+```cpp
+#include "ExampleConvection.h"
+
+// Don't forget to register your object with MOOSE
+registerMooseObject("ExampleApp", ExampleConvection);
+
+InputParameters
+ExampleConvection::validParams()
+{
+  InputParameters params = Kernel::validParams();
+
+  // Here we specify a new parameter for our kernel allowing users to indicate which other
+  // variable they want to be coupled into this kernel from an input file.
+  params.addRequiredCoupledVar(
+      "some_variable", "The gradient of this variable will be used as the velocity vector.");
+
+  return params;
+}
+
+ExampleConvection::ExampleConvection(const InputParameters & parameters)
+  : Kernel(parameters),
+    // using the user-specified name for the coupled variable, retrieve and store a reference to the
+    // coupled variable.
+    _grad_some_variable(coupledGradient("some_variable"))
+{
+}
+
+Real
+ExampleConvection::computeQpResidual()
+{
+  // Implement the weak form equations using the coupled variable instead of the constant
+  // parameter 'velocity' used in example 2.
+  return _test[_i][_qp] * (_grad_some_variable[_qp] * _grad_u[_qp]);
+}
+
+Real
+ExampleConvection::computeQpJacobian()
+{
+  // Implement the Jacobian using the coupled variable instead of the 'velocity'
+  // constant parameter used in example 2.
+  return _test[_i][_qp] * (_grad_some_variable[_qp] * _grad_phi[_j][_qp]);
+}
+```
+

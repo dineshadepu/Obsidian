@@ -64,3 +64,68 @@
   year={2022},
   publisher={Elsevier}
 }
+
+#references/battery/tan2020simulating
+#references/battery/sph/tan2020simulating
+[[tan2020simulating]]
+@article{tan2020simulating,
+  title={Simulating dendrite growth in lithium batteries under cycling conditions},
+  author={Tan, Jinwang and Cannon, Andrew and Ryan, Emily},
+  journal={Journal of Power Sources},
+  volume={463},
+  pages={228187},
+  year={2020},
+  publisher={Elsevier}
+}
+
+#references/battery/dendrite/xu2022promoting
+@article{xu2022promoting,
+  title={Promoting mechanistic understanding of lithium deposition and solid-electrolyte interphase (SEI) formation using advanced characterization and simulation methods: recent progress, limitations, and future perspectives},
+  author={Xu, Yaolin and Dong, Kang and Jie, Yulin and Adelhelm, Philipp and Chen, Yawei and Xu, Liang and Yu, Peiping and Kim, Junghwa and Kochovski, Zdravko and Yu, Zhilong and others},
+  journal={Advanced Energy Materials},
+  volume={12},
+  number={19},
+  pages={2200398},
+  year={2022},
+  publisher={Wiley Online Library}
+}
+
+
+#references/battery/dendrite/monte_carlo/aryanfar2014dynamics
+#references/battery/dendrite/monte_carlo
+@article{aryanfar2014dynamics,
+  title={Dynamics of lithium dendrite growth and inhibition: pulse charging experiments and Monte Carlo calculations},
+  author={Aryanfar, Asghar and Brooks, Daniel and Merinov, Boris V and Goddard III, William A and Colussi, Agust{\'\i}n J and Hoffmann, Michael R},
+  journal={The journal of physical chemistry letters},
+  volume={5},
+  number={10},
+  pages={1721--1726},
+  year={2014},
+  publisher={ACS Publications}
+}
+
+#references/battery/dendrite/sph/tan2020simulating
+#references/battery/dendrite/sph
+@article{tan2020simulating,
+  title={Simulating dendrite growth in lithium batteries under cycling conditions},
+  author={Tan, Jinwang and Cannon, Andrew and Ryan, Emily},
+  journal={Journal of Power Sources},
+  volume={463},
+  pages={228187},
+  year={2020},
+  publisher={Elsevier}
+}
+
+
+#references/battery/dendrite/dft/li2019energy
+#references/battery/dendrite/dft
+@article{li2019energy,
+  title={Energy landscape of the charge transfer reaction at the complex Li/SEI/electrolyte interface},
+  author={Li, Yunsong and Qi, Yue},
+  journal={Energy \& Environmental Science},
+  volume={12},
+  number={4},
+  pages={1286--1295},
+  year={2019},
+  publisher={Royal Society of Chemistry}
+}

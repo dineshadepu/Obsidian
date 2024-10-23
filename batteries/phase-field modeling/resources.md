@@ -5,3 +5,4 @@
 5. https://github.com/BattModels/electrodep
 6. Alamo software https://www.solids.group/alamo/ 
 7. Using the Multiphysics Object Oriented Simulation Environment (MOOSE): Part 1 
+8. https://github.com/mzl13/Lithium 3D phase field for Lithium dendrite modelling using AMREX, with finite difference approach

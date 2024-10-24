@@ -13,12 +13,20 @@
             "state": {
               "type": "markdown",
               "state": {
+<<<<<<< HEAD
                 "file": "SPH for Dendrite modeling.md",
+=======
+                "file": "pybamm/PyBaMM single phase battery modeling.md",
+>>>>>>> 1326901 (Add parameters list of DFN in PyBaMM)
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
+<<<<<<< HEAD
               "title": "SPH for Dendrite modeling"
+=======
+              "title": "PyBaMM single phase battery modeling"
+>>>>>>> 1326901 (Add parameters list of DFN in PyBaMM)
             }
           }
         ]
@@ -77,7 +85,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "f077042992e38315",
@@ -150,7 +159,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 381.5
+    "width": 381.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -165,6 +175,10 @@
   },
   "active": "3fd17c23aa3031da",
   "lastOpenFiles": [
+    "Pasted image 20241022124536.png",
+    "Pasted image 20241023015352.png",
+    "Pasted image 20241019184311.png",
+    "pybamm/PyBaMM single phase battery modeling.md",
     "references/references.md",
     "SPH for Dendrite modeling.md",
     "Battery modelling.md",
@@ -173,15 +187,16 @@
     "phase-field modeling/Phase field equations and modeling.md",
     "pybamm/installation.md",
     "moose/Installation.md",
+<<<<<<< HEAD
     "pybamm/PyBaMM single phase battery modeling.md",
+=======
+    "SPH for Dendrite modeling.md",
+>>>>>>> 1326901 (Add parameters list of DFN in PyBaMM)
     "Battery basics.md",
-    "Pasted image 20241023015352.png",
     "references/ali2024comparison.md",
     "references/Rashid2016Investigation.md",
     "pybamm/Getting started on pybamm (101).md",
-    "Pasted image 20241022124536.png",
     "moose/Tutorial.md",
-    "Pasted image 20241019184311.png",
     "ali2024comparison][file.md",
     "references",
     "Goals.md",

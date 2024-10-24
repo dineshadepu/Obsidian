@@ -129,3 +129,17 @@
   year={2019},
   publisher={Royal Society of Chemistry}
 }
+
+
+#references/battery/dendrite/sph/tartakovsky2007simulations
+#references/battery/dendrite/sph
+@article{tartakovsky2007simulations,
+  title={Simulations of reactive transport and precipitation with smoothed particle hydrodynamics},
+  author={Tartakovsky, Alexandre M and Meakin, Paul and Scheibe, Timothy D and West, Rogene M Eichler},
+  journal={Journal of Computational Physics},
+  volume={222},
+  number={2},
+  pages={654--672},
+  year={2007},
+  publisher={Elsevier}
+}

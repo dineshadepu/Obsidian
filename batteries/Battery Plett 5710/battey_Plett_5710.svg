@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="battey_Plett_5710.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.69664703"
+     inkscape:cx="1127.5438"
+     inkscape:cy="524.65594"
+     inkscape:window-width="1920"
+     inkscape:window-height="978"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 92.008401,109.64663 v 68.17179"
+       id="path42"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 97.506532,130.2101 v 27.46878"
+       id="path124"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 97.630081,144.7486 27.468789,2e-5"
+       id="path941"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 64.437623,144.77019 27.468782,2e-5"
+       id="path943"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 70.883245,135.77391 1.1e-5,-7.34333"
+       id="path945"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 67.211583,132.10224 7.343335,1e-5"
+       id="path947"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:none;stroke:#ff0000;stroke-width:0.818999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path971"
+       cx="70.813293"
+       cy="131.82387"
+       r="6.6093297"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 113.98873,132.10966 7.34333,1e-5"
+       id="path1099"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:none;stroke:#ff0000;stroke-width:0.818999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="circle1101"
+       cx="117.59044"
+       cy="131.83128"
+       r="6.6093297"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/cell_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 306.28422,98.953016 V 167.12481"
+       id="path1271"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 311.78235,119.51649 v 27.46878"
+       id="path1273"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 338.05577,133.89885 27.46879,2e-5"
+       id="path1275"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 278.71344,134.07658 27.46878,2e-5"
+       id="path1277"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 284.5508,127.2352 1e-5,-7.34333"
+       id="path1279"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 280.87914,123.56353 7.34333,1e-5"
+       id="path1281"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:none;stroke:#ff0000;stroke-width:0.818999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="circle1283"
+       cx="284.48083"
+       cy="123.28515"
+       r="6.6093297"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 354.5958,122.57323 7.34333,1e-5"
+       id="path1285"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:none;stroke:#ff0000;stroke-width:0.818999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="circle1287"
+       cx="358.19751"
+       cy="122.29486"
+       r="6.6093297"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 317.58906,98.976011 V 167.14781"
+       id="path1289"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 323.76297,119.35923 v 27.46878"
+       id="path1291"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 331.1163,99.048335 V 167.22013"
+       id="path1293"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.819;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 337.71971,119.34328 v 27.46878"
+       id="path1295"
+       inkscape:export-filename="/home/dineshadepu/life/Obsidian/batteries/battery_model_diagram.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

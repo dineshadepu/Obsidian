@@ -1,32 +1,24 @@
 {
   "main": {
-    "id": "f7abedf40db135bb",
+    "id": "70ef96841d366a7c",
     "type": "split",
     "children": [
       {
-        "id": "f918519973932080",
+        "id": "0282d477aeb159b3",
         "type": "tabs",
         "children": [
           {
-            "id": "3fd17c23aa3031da",
+            "id": "1ae6ccffd80c90c0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-<<<<<<< HEAD
-                "file": "SPH for Dendrite modeling.md",
-=======
-                "file": "pybamm/PyBaMM single phase battery modeling.md",
->>>>>>> 1326901 (Add parameters list of DFN in PyBaMM)
+                "file": "Battery Plett 5710/Battery boot camp.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-<<<<<<< HEAD
-              "title": "SPH for Dendrite modeling"
-=======
-              "title": "PyBaMM single phase battery modeling"
->>>>>>> 1326901 (Add parameters list of DFN in PyBaMM)
+              "title": "Battery boot camp"
             }
           }
         ]
@@ -35,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "57f75e973664fee7",
+    "id": "b2469ee848991c8e",
     "type": "split",
     "children": [
       {
-        "id": "5b6ae02f4ce9c904",
+        "id": "2b042b8a229d96d4",
         "type": "tabs",
         "children": [
           {
-            "id": "9e064f45e6570d23",
+            "id": "a3e25f5a3c9ca5a7",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -55,7 +47,7 @@
             }
           },
           {
-            "id": "296b9d2cb38bc545",
+            "id": "ab222b1e0d87b0f6",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -72,7 +64,7 @@
             }
           },
           {
-            "id": "9e7f25edfb7c0ca6",
+            "id": "6c2a63ac0a6f7d64",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -85,24 +77,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "f077042992e38315",
+    "id": "6077814c21bf6eeb",
     "type": "split",
     "children": [
       {
-        "id": "a8e2de38ee79521e",
+        "id": "99dda91eafb7b9fa",
         "type": "tabs",
         "children": [
           {
-            "id": "535100be061112b0",
+            "id": "d159437c6af2edaa",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "references/references.md",
+                "file": "pybamm/PyBaMM single phase battery modeling.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,54 +103,53 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for references"
+              "title": "Backlinks for PyBaMM single phase battery modeling"
             }
           },
           {
-            "id": "b784b7053bbe7db3",
+            "id": "b7b517d948d23b2f",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "references/references.md",
+                "file": "pybamm/PyBaMM single phase battery modeling.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from references"
+              "title": "Outgoing links from PyBaMM single phase battery modeling"
             }
           },
           {
-            "id": "a4451b878baf8a01",
+            "id": "202da20e468bda19",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": false
+                "useHierarchy": true
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "87872fe175c88c7c",
+            "id": "5683cda8b42fa715",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "references/references.md"
+                "file": "pybamm/PyBaMM single phase battery modeling.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of references"
+              "title": "Outline of PyBaMM single phase battery modeling"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 381.5,
+    "width": 300,
     "collapsed": true
   },
   "left-ribbon": {
@@ -173,39 +163,24 @@
       "latex-ocr:LatexOCR": false
     }
   },
-  "active": "3fd17c23aa3031da",
+  "active": "1ae6ccffd80c90c0",
   "lastOpenFiles": [
-    "Pasted image 20241022124536.png",
-    "Pasted image 20241023015352.png",
-    "Pasted image 20241019184311.png",
-    "pybamm/PyBaMM single phase battery modeling.md",
-    "references/references.md",
-    "SPH for Dendrite modeling.md",
-    "Battery modelling.md",
-    "references/torchio2016lionsimba.md",
-    "phase-field modeling/resources.md",
-    "phase-field modeling/Phase field equations and modeling.md",
-    "pybamm/installation.md",
-    "moose/Installation.md",
-<<<<<<< HEAD
-    "pybamm/PyBaMM single phase battery modeling.md",
-=======
-    "SPH for Dendrite modeling.md",
->>>>>>> 1326901 (Add parameters list of DFN in PyBaMM)
+    "Battery Plett 5710/Battery boot camp.md",
+    "Battery Plett 5710/battey_Plett_5710.svg",
     "Battery basics.md",
-    "references/ali2024comparison.md",
-    "references/Rashid2016Investigation.md",
-    "pybamm/Getting started on pybamm (101).md",
-    "moose/Tutorial.md",
-    "ali2024comparison][file.md",
-    "references",
+    "Screenshot from 2024-10-30 15-55-16.png",
+    "battery_model_diagram.png",
+    "cell_model_diagram.png",
+    "Battery Plett 5710",
+    "pybamm/PyBaMM single phase battery modeling.md",
+    "Pasted image 20241019184311.png",
     "Goals.md",
-    "Battery modelling",
+    "Pasted image 20241022124536.png",
+    "Battery modelling.md",
+    "SPH for Dendrite modeling.md",
+    "moose/Tutorial.md",
+    "moose/Installation.md",
     "Generating latex from images.md",
-    "phase-field modeling",
-    "moose/Untitled 1.md",
-    "moose",
-    "pybamm",
-    "Welcome.md"
+    "pybamm/Getting started on pybamm (101).md"
   ]
 }

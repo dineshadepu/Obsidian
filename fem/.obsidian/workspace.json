@@ -1,0 +1,175 @@
+{
+  "main": {
+    "id": "706343451e056623",
+    "type": "split",
+    "children": [
+      {
+        "id": "332d6831d7b9b422",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "26b165464200cccc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cabana/Cabana own solver development.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Cabana own solver development"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2a405a03e329f401",
+    "type": "split",
+    "children": [
+      {
+        "id": "94f93d971e013c53",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6439d0cabdfa2b4e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "2dd6bb7c1e78dcd7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ae1f86b416995222",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ec2655840250a56a",
+    "type": "split",
+    "children": [
+      {
+        "id": "07468a63f9dc456a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ecef6c5ab8284bad",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "fem/Numerical Analysis Methods.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Numerical Analysis Methods"
+            }
+          },
+          {
+            "id": "43bd08719de52fe2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "fem/Numerical Analysis Methods.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Numerical Analysis Methods"
+            }
+          },
+          {
+            "id": "06cabf35b5827186",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3b3c9088534d69d4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "fem/Numerical Analysis Methods.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Numerical Analysis Methods"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "26b165464200cccc",
+  "lastOpenFiles": [
+    "Cabana/Cabana basics.md",
+    "SPH/Roadmap.md",
+    "Untitled.md",
+    "Cabana",
+    "Cabana/Cabana own solver development.md",
+    "fem/Numerical Analysis Methods.md",
+    "SPH"
+  ]
+}

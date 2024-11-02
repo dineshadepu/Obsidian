@@ -5,12 +5,25 @@ particle interact when their distance between the centres is less both the parti
 combined.
 
 $$
-\text{Governing equation}
+\begin{aligned}
+m\frac{du}{dt} &= F_{c}\\
+\frac{dx}{dt} &= u
+\end{aligned}
+$$
+
+The force between two particles is computed by
+
+$$
+(F_c)^i = k^i \delta_{ij} \hat{n}_{ij}
 $$
 
 
+As part of the integration step, we evolve the properties of the particles by:
 $$
-\text{integration stepper equations}
+\begin{aligned}
+u_{t + 1} &= u_{t} + \frac{du}{dt} \Delta t \\
+x_{t + 1} &= x_{t} + u_t \Delta t \\
+\end{aligned}
 $$
 
 # Overview of the implementation
@@ -18,18 +31,19 @@ $$
 
 It has following steps:
 
-1. Setup the package
-2. Create your particle class, write a test
-3. Write an integrator, write a test
-4. Write force interaction including the neighbour search functionality
-5. How to write an output file
-6. How to write a solver
-7. How to take inputs from an input file
-8. Write a final example showing the full implementation which solves the problem
-9. Use automan to automate the results
+1. [x] Setup the package
+2. [x] Create your particle class, write a test
+3. [ ] Write an integrator, write a test
+4. [ ] Write force interaction including the neighbour search functionality
+5. [ ] How to write an output file
+6. [ ] How to write a solver
+7. [ ] How to take inputs from an input file
+8. [ ] Write a final example showing the full implementation which solves the problem
+9. [ ] Use automan to automate the results
 
 
 # Step 1: Setup the package
+#cabana/setup_new_package
 
 Provided the problem statement above, we know what properties our particles need to have. They are as following
 
@@ -102,7 +116,7 @@ demonstrated further as we go deep in the tutorial.
 
 Specifically, the files to see are `CMakeLists.txt` on the root folder:
 
-```cmake
+```bash
 # project settings
 cmake_minimum_required(VERSION 3.12)
 
@@ -168,6 +182,7 @@ A more detailed explanation of this cmakefile is given in Cabana basic notes. Th
 
 To compile this package, we need to follow these steps:
 
+#cabana/compile
 ```bash
 mkdir build
 cd build
@@ -192,7 +207,7 @@ ctest
 ```
 
 however, sometimes this may not work, so we write a seperate makefile to run the tests, the makefile is given as:
-```
+```bash
 # Define the build directory containing binaries
 BUILD_DIR := /Users/dineshadepu/life/softwares/Cabana_package_template/build
 
@@ -216,7 +231,7 @@ run_tests:
 ```
 
 with this makefile, one can run the tests by executing 
-```
+```bash
 make run_tests
 ```
 command in the build directory. 
@@ -225,6 +240,94 @@ In the next section we will see how to add more properties to our particle class
 initialise the particles with different configurations. Write corresponding tests to make sure our particle array is working fine. 
 
 # Step 2: Create your particle class
+#cabana/setup_new_package
 
 As a first step create your own particle class, where it has properties what each particle should 
-have. 
+have. From the governing equations, we can see our particles need the following properties
+
+Todo: Draw a figure
+
+As listed in the figure, we need the following properties to be added to the particles to implement the governing equations:
+
+| Property name | code notation | quantity |
+| ------------- | ------------- | -------- |
+| mass          | m             | scalar   |
+| position      | x             | vector   |
+| velocity      | u             | vector   |
+| radius        | rad           | scalar   |
+| stiffness     | k             | scalar   |
+| force         | force         | vector   |
+First we will add these properties to our particle class, this is done as following:
+```cpp
+  private:
+    int _no_of_particles;
+    aosoa_double_type _m;
+    aosoa_vec_double_type _x;
+    aosoa_vec_double_type _u;
+    aosoa_double_type _rad;
+    aosoa_double_type _k;
+    aosoa_vec_double_type _force;
+```
+The types,  `aosoa_double_type, aosoa_vec_double_type` are defined as follows:
+
+```cpp
+  public:
+    using memory_space = MemorySpace;
+    using execution_space = typename memory_space::execution_space;
+    static constexpr int dim = Dimension;
+
+    using double_type = Cabana::MemberTypes<double>;
+    using int_type = Cabana::MemberTypes<int>;
+    using vec_double_type = Cabana::MemberTypes<double[dim]>;
+    using vec_int_type = Cabana::MemberTypes<int[dim]>;
+    using aosoa_double_type = Cabana::AoSoA<double_type, memory_space, 1>;
+    using aosoa_int_type = Cabana::AoSoA<int_type, memory_space, 1>;
+    using aosoa_vec_double_type = Cabana::AoSoA<vec_double_type, memory_space, 1>;
+    using aosoa_vec_int_type = Cabana::AoSoA<vec_int_type, memory_space, 1>;
+```
+
+In order to access them and able to change, we need a public accessor, a sample public accessor looks like:
+```cpp
+  public:
+	// returns access with constant access
+    auto sliceMass() {
+      return Cabana::slice<0>( _m, "mass" );
+    }
+	// returns access with constant access
+    auto sliceMass() const
+    {
+      return Cabana::slice<0>( _m, "mass" );
+    }
+```
+
+We want to add more particles to our existing particles, this is done by using the `resize` functionality, which is already provided as one of  the particle class methods:
+
+```cpp
+  public:
+    void resize(const std::size_t n)
+    {
+      _no_of_particles = n;
+      _m.resize( n );
+      _x.resize( n );
+      _u.resize( n );
+      _rad.resize( n );
+      _k.resize( n );
+      _force.resize( n );
+    }
+```
+It is essential one needs to add all the properties to the above method to in order to resize the 
+array size.
+
+With this `particle` class, lets see how to use it and create our particles in a siimulation.
+
+# Step 2.1: Using the particle class
+In the example, first select the execution and memory space. Then use the `Particles` class to 
+create the particles, as follows:
+```cpp
+  using exec_space = Kokkos::OpenMP;
+  using memory_space = typename exec_space::memory_space;
+
+  auto particles = std::make_shared<
+    CabanaNewPkg::Particles<memory_space, DIM>>(exec_space(), 1, "tmp");
+```
+Here, we select the dimension, here it is 1, and the output folder name as 

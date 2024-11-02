@@ -164,12 +164,13 @@
   },
   "active": "26b165464200cccc",
   "lastOpenFiles": [
-    "Cabana/Cabana basics.md",
     "SPH/Roadmap.md",
-    "Untitled.md",
-    "Cabana",
     "Cabana/Cabana own solver development.md",
     "fem/Numerical Analysis Methods.md",
+    "fem/fig_3_1_data_with_interpolation_and_approximation_functions 1.png",
+    "Cabana/Cabana basics.md",
+    "Untitled.md",
+    "Cabana",
     "SPH"
   ]
 }

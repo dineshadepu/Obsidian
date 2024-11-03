@@ -33,9 +33,9 @@ It has following steps:
 
 1. [x] Setup the package
 2. [x] Create your particle class, write a test
-3. [ ] Write an integrator, write a test
-4. [ ] Write force interaction including the neighbour search functionality
-5. [ ] How to write an output file
+3. [ ] How to write an output file
+4. [ ] Write an integrator, write a test
+5. [ ] Write force interaction including the neighbour search functionality
 6. [ ] How to write a solver
 7. [ ] How to take inputs from an input file
 8. [ ] Write a final example showing the full implementation which solves the problem
@@ -242,6 +242,9 @@ initialise the particles with different configurations. Write corresponding test
 # Step 2: Create your particle class
 #cabana/setup_new_package
 
+The updated code for this section can be browsed at the following commit:
+https://github.com/dineshadepu/Cabana_package_template/tree/3e2f78278438ee5ce4aaf81a09133c5ac46d495f
+
 As a first step create your own particle class, where it has properties what each particle should 
 have. From the governing equations, we can see our particles need the following properties
 
@@ -320,7 +323,7 @@ array size.
 
 With this `particle` class, lets see how to use it and create our particles in a siimulation.
 
-# Step 2.1: Using the particle class
+## Step 2.1: Using the particle class
 In the example, first select the execution and memory space. Then use the `Particles` class to 
 create the particles, as follows:
 ```cpp
@@ -328,6 +331,56 @@ create the particles, as follows:
   using memory_space = typename exec_space::memory_space;
 
   auto particles = std::make_shared<
-    CabanaNewPkg::Particles<memory_space, DIM>>(exec_space(), 1, "tmp");
+    CabanaNewPkg::Particles<memory_space, DIM>>(exec_space(), 1);
 ```
-Here, we select the dimension, here it is 1, and the output folder name as 
+Here, we first set the number of particles as $1$. The above command will initialise the particles in
+the particles class with dummy values, it is essential to initialise the particle, to do that we will use
+the `updateParticles` method of the `Particles` class:
+
+```cpp
+  // ====================================================
+  //            Custom particle initialization
+  // ====================================================
+  auto x_p = particles->slicePosition();
+  auto u_p = particles->sliceVelocity();
+  auto k_p = particles->sliceRadius();
+
+  double radius_p_inp = 0.1;
+  double k_p_inp = 1e5;
+
+  auto particles_init_functor = KOKKOS_LAMBDA( const int pid )
+    {
+      // Initial conditions: displacements and velocities
+      double m_p_i = 4. / 3. * M_PI * radius_p_inp * radius_p_inp * radius_p_inp * 1000.;
+      double I_p_i = 2. / 5. * m_p_i * radius_p_inp * radius_p_inp;
+      x_p( pid, 0 ) = radius_p_inp + radius_p_inp / 1000000.;
+      u_p( pid, 0 ) = 0.;
+      k_p( pid ) = k_p_inp;
+    };
+  particles->updateParticles( exec_space{}, particles_init_functor );
+```
+
+However it is essential, one needs to make sure this initializer works across the architechtures, 
+and the initialiser is parallel.
+
+Sometimes, we want to resize the number of particles, either reduce them or increase them:
+This can be achieved by the `resize` method functionality as:
+```cpp
+  particles->resize(20);
+
+  auto x_p_20 = particles->slicePosition();
+  auto u_p_20 = particles->sliceVelocity();
+
+  for (int i=0; i < u_p_20.size(); i++){
+    x_p_20( i, 0 ) = 3 * i * radius_p_inp + radius_p_inp / 1000000.;
+
+    u_p_20( i, 0 ) = 0.;
+  }
+```
+It is essential, that we need to again get new pointers to the properties of the particles, since they get outdated once we resize.  
+
+
+
+
+# Step 3: Output file
+#cabana/write_output

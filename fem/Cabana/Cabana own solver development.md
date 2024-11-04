@@ -33,11 +33,11 @@ It has following steps:
 
 1. [x] Setup the package
 2. [x] Create your particle class, write a test
-3. [ ] How to write an output file
+3. [x] How to write an output file
 4. [ ] Write an integrator, write a test
-5. [ ] Write force interaction including the neighbour search functionality
-6. [ ] How to write a solver
-7. [ ] How to take inputs from an input file
+5. [ ] Write force interaction including the neighbour search functionality, write a test
+6. [ ] How to write a solver, write a test
+7. [ ] How to take inputs from an input file, write a test
 8. [ ] Write a final example showing the full implementation which solves the problem
 9. [ ] Use automan to automate the results
 
@@ -384,3 +384,98 @@ It is essential, that we need to again get new pointers to the properties of the
 
 # Step 3: Output file
 #cabana/write_output
+
+The code files corresponding to this section development can be seen at https://github.com/dineshadepu/Cabana_package_template/tree/79c6f80e81ce0f5e0fe0150ee306ec499ed0c54f commit. 
+
+In order to view the data of the particles we need to output the particles, this is done through hdf5 files. To the existing `Particles` class, we add the following method:
+
+```cpp
+    void output(  const int output_step,
+                  const double output_time,
+                  const bool use_reference = true )
+    {
+      // _output_timer.start();
+
+#ifdef Cabana_ENABLE_HDF5
+      Cabana::Experimental::HDF5ParticleOutput::writeTimeStep(
+                                                h5_config,
+	                                            _output_folder_name+"/particles",
+												// "particles",
+												MPI_COMM_WORLD,
+												output_step,
+                                                output_time,
+                                                _no_of_particles,
+                                                slicePosition(),
+                                                sliceVelocity(),
+                                                sliceForce(),
+                                                sliceMass(),
+                                                sliceRadius(),
+                                                sliceStiffness());
+#else
+      std::cout << "No particle output enabled.";
+#endif
+    }
+
+```
+Further, we add variable to create a directory output where we want to save the output files by:
+```cpp
+    // Output folder name
+    std::string _output_folder_name;
+#ifdef Cabana_ENABLE_HDF5
+    Cabana::Experimental::HDF5ParticleOutput::HDF5Config h5_config;
+#endif
+```
+
+And a method to create a folder:
+```cpp
+    void set_output_folder(std::string output_folder_name)
+    {
+      _output_folder_name = output_folder_name;
+
+      // Check if src folder exists
+      if (!fs::is_directory(_output_folder_name) || !fs::exists(_output_folder_name)) {
+        // create src folder
+        fs::create_directory(_output_folder_name);
+      }
+    }
+```
+
+And a new constructor method which would create a output folder:
+```cpp
+    // Constructor which initializes particles on regular grid.
+    template <class ExecSpace>
+    Particles( const ExecSpace& exec_space, std::size_t no_of_particles,
+               std::string output_folder_name): Particles(exec_space, no_of_particles)
+    {
+      set_output_folder(output_folder_name);
+    }
+```
+
+## Step 3.1: Using output data functionality
+
+We wrote three tests to test the output functionality code, which are:
+```cpp
+testParticlesOutputFolderCreationFromInitializer();
+testParticlesOutputFolderCreationFromSetOutputFolder();
+testParticlesHdfFile();
+```
+These test, if the folder and the hdf5 files created successfully.
+
+From these tests, we can see, an output folder can be created either by a separate method assigned, or through while creating the Particles. That is:
+```cpp
+auto particles = std::make_shared<
+	CabanaNewPkg::Particles<memory_space, DIM>>(exec_space(), 1);
+particles->set_output_folder("test_particles_output_folder_creation_3_output");
+```
+or through the initializer:
+```cpp
+    auto particles = std::make_shared<
+      CabanaNewPkg::Particles<memory_space, DIM>>(
+      exec_space(), 1, "test_particles_output_folder_creation_output"
+      );
+```
+
+While, at a given time, output can be written by:
+```cpp
+particles->output(total_steps/step, time);
+```

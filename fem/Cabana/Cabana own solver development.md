@@ -34,12 +34,13 @@ It has following steps:
 1. [x] Setup the package
 2. [x] Create your particle class, write a test
 3. [x] How to write an output file
-4. [ ] Write an integrator, write a test
+4. [ ] Write about neighbours depending on the different for loop we use
 5. [ ] Write force interaction including the neighbour search functionality, write a test
-6. [ ] How to write a solver, write a test
-7. [ ] How to take inputs from an input file, write a test
-8. [ ] Write a final example showing the full implementation which solves the problem
-9. [ ] Use automan to automate the results
+6. [ ] Write an integrator, write a test
+7. [ ] How to write a solver, write a test
+8. [ ] How to take inputs from an input file, write a test
+9. [ ] Write a final example showing the full implementation which solves the problem
+10. [ ] Use automan to automate the results
 
 
 # Step 1: Setup the package

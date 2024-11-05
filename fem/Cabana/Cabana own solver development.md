@@ -34,7 +34,7 @@ It has following steps:
 1. [x] Setup the package
 2. [x] Create your particle class, write a test
 3. [x] How to write an output file
-4. [ ] Write about neighbours depending on the different for loop we use
+4. [x] Write about neighbours depending on the different for loop we use
 5. [ ] Write force interaction including the neighbour search functionality, write a test
 6. [ ] Write an integrator, write a test
 7. [ ] How to write a solver, write a test
@@ -480,3 +480,80 @@ While, at a given time, output can be written by:
 ```cpp
 particles->output(total_steps/step, time);
 ```
+
+# Step 5:  Write force interaction 
+
+The force acting on particle with index $i$ due to its neighbours can be computed from a nested 
+for loop:
+
+```python 
+for i in range(len(particles)):
+	for j in range(len(particles)):
+		# Exclude self particle in force computation
+		if i != j:
+			dx = x[i][0] - x[j][0]
+			dy = x[i][1] - x[j][1]
+			dz = x[i][2] - x[j][2]
+			dist = sqrt(dx**2. + dy**2 + dz**2.)
+			force[i][0] += m[j] * dist 
+			force[i][1] += m[j] * dist
+			force[i][2] += m[j] * dist
+```
+
+However, we don't need to loop over all the particles, we only need particles which are in close proximity, and this depends on the numerical scheme we usually employ. Keeping that in mind, our computations would get faster, and the modified code would look something like:
+
+```python 
+for i in range(len(particles)):
+	for j in neighbours(i):
+		# Exclude self particle in force computation
+		dx = x[i][0] - x[j][0]
+		dy = x[i][1] - x[j][1]
+		dz = x[i][2] - x[j][2]
+		dist = sqrt(dx**2. + dy**2 + dz**2.)
+		force[i][0] += m[j] * dist 
+		force[i][1] += m[j] * dist
+		force[i][2] += m[j] * dist
+```
+
+But, how would this translate when we are writing code in `Cabana`?  With consideration with the computation of neighbours, we 
+
+```cpp
+  auto positions = particles->slicePosition();
+  auto forces = particles->sliceForce();
+  auto force_kernel = KOKKOS_LAMBDA( const int i, const int j )
+    {
+		dx = positions( i, 0 ) - positions( j, 0 );
+		dy = positions( i, 0 ) - positions( j, 0 );
+		dz = positions( i, 0 ) - positions( j, 0 );
+		dist = sqrt(dx*dx + dy*dz + dz*dz);
+		forces (i, 0) += m[j] * dist ;
+		forces (i, 1) += m[j] * dist;
+		forces (i, 2) += m[j] * dist;
+    };
+
+  Kokkos::RangePolicy<exec_space> policy( 0, positions.size() );
+
+  Cabana::neighbor_parallel_for( policy, force_kernel, verlet_list,
+                                 Cabana::FirstNeighborsTag(),
+                                 Cabana::SerialOpTag(), "ex_1st_serial" );
+  Kokkos::fence();
+```
+
+One important thing we need to look here is the neighbour parallel for loop provided by `Cabana`, it has several parameters, and each one has its significance. In detail, the command is:
+```cpp
+  Cabana::neighbor_parallel_for( policy, force_kernel, verlet_list,
+                                 Cabana::FirstNeighborsTag(),
+                                 Cabana::SerialOpTag(), "ex_1st_serial" );
+```
+
+The `policy`, `force_kernel, verlet_list` stays the same, but
+`Cabana::FirstNeighborsTag(), Cabana::SerialOpTag()` can have different values. Here, 
+`Cabana::FirstNeighborsTag()` implies we only consider the first neighbours of index $i$ , 
+`Cabana::SecondNeighborsTag()` implies we consider the neighbours of $i$ and their neighbours 
+as well. For the codes we write, we don't need `Cabana::SecondNeighborsTag()`. 
+`Cabana::SerialOpTag()` only parallelize the top level for loop but not the $j$ one. But if we change it to `Cabana::TeamOpTag()` the second for loop will also be paralleled. In our implementations we don't consider parallelizing the second for loop.
+
+Conclusion is, in all our numerical implementations, we would only consider the template as 
+given above, just the `force_kernel` changes depending on the physics and the kernel name. 
+
+

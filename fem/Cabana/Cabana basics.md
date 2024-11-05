@@ -63,3 +63,7 @@ Full code of neighbours of above explanation can be found at https://github.com/
 
 
 
+
+# Force computation
+
+With the given 

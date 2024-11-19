@@ -556,4 +556,133 @@ as well. For the codes we write, we don't need `Cabana::SecondNeighborsTag()`.
 Conclusion is, in all our numerical implementations, we would only consider the template as 
 given above, just the `force_kernel` changes depending on the physics and the kernel name. 
 
+An example, of force computation, of the above implementation is tested in the example at
+https://github.com/dineshadepu/Cabana_package_template/commit/dc2af0f2326fde6b05e3851327090803113101ad, the example is https://github.com/dineshadepu/Cabana_package_template/blob/dc2af0f2326fde6b05e3851327090803113101ad/examples/test_03_compute_velocity_accelerations.cpp
 
+
+# Miscellaneous notes
+
+While creating the particles, force objects, we should make them as a shared pointer
+
+```cpp
+  auto force = std::make_shared<
+    CabanaDEM::Force<exec_space>>(cor_pp_inp, cor_pw_inp,
+				  friction_pp_inp, friction_pw_inp);
+
+  // ====================================================
+  //                 Particle generation
+  // ====================================================
+  // Does not set displacements, velocities, etc.
+  auto particles = std::make_shared<
+    CabanaDEM::Particles<memory_space, DIM, 6, 1>>(exec_space(), 1, output_folder_name);
+
+```
+And to access `fields` of these class, we need to use the following syntax:
+```cpp
+auto x_p = particles->slicePosition();
+auto u_p = particles->sliceVelocity();
+auto omega_p = particles->sliceOmega();
+```
+
+While we pass these to functions, to operate on them, the function signature reads as:
+```cpp
+
+  //---------------------------------------------------------------------------//
+  // Creation method.
+  template <class MemorySpace, class InputsType, class ParticleType, class WallType,
+	    class ForceModel>
+  auto createSolverDEM(InputsType inputs,
+		       std::shared_ptr<ParticleType> particles,
+		       std::shared_ptr<WallType> wall,
+		       std::shared_ptr<ForceModel> force,
+		       double delta)
+  {
+    return std::make_shared<
+      SolverDEM<MemorySpace, InputsType, ParticleType, WallType, ForceModel>>(inputs, particles,
+									      wall, force, delta);
+  }
+
+}
+```
+With the above function, we call it with the following syntax:
+```cpp
+  auto cabana_dem = CabanaDEM::createSolverDEM<memory_space>( inputs, particles, wall,
+							      force, 3. * radius_p_inp);
+```
+Since, `particles` and `force` are `shared_ptr`, we can simply pass them without any pointer invocations. 
+
+For functions, such as which handle the force, has the following function signature:
+```cpp
+  template <class ForceType, class ParticleType, class InfiniteWallType, class NeighListType,
+            class ParallelType>
+  void computeForceParticleParticleInfiniteWall( ForceType& force, ParticleType& particles,
+                                                 InfiniteWallType& wall,
+                                                 const NeighListType& neigh_list,
+                                                 const ParallelType& neigh_op_tag,
+                                                 double dt )
+  {
+// elided for clarity
+  }
+```
+
+Here, we need references to the `particles` and `force`, but we have our `particles` ad `force` as `shared_ptr`. In order to call this function, we write the following syntax:
+```cpp
+	  computeForceParticleParticleInfiniteWall( *force, *particles, *wall,
+						    *neighbors, neigh_iter_tag{}, dt );
+```
+Please note `*class_name` here. The take away is, to pass by reference a shared_ptr is to use a `*class_name`. Further, if a function signature uses a reference, then we can simply pass, these local references, as these are already references. 
+```cpp
+    template <class ParticleType, class NeighListType, class ParallelType>
+    void computeForceFullParticleParticle(ParticleType& particles,
+                                          const NeighListType& neigh_list,
+                                          ParallelType& neigh_op_tag,
+                                          double dt)
+  /******************************************************************************
+  Force free functions.
+  ******************************************************************************/
+  template <class ForceType, class ParticleType, class NeighListType,
+            class ParallelType>
+  void computeForceParticleParticle( ForceType& force, ParticleType& particles,
+                                     const NeighListType& neigh_list,
+                                     const ParallelType& neigh_op_tag,
+                                     double dt )
+  {
+    force.makeForceTorqueZeroOnParticle( particles );
+    force.update_tangential_contacts( particles, neigh_list );
+    force.computeForceFullParticleParticle( particles, neigh_list, neigh_op_tag, dt );
+  }
+```
+
+To access, class variable, if the created class is a shared_ptr, then we should access through:
+```cpp
+  // Does not set displacements, velocities, etc.
+  auto wall = std::make_shared<
+    CabanaDEM::Wall<memory_space, DIM>>(exec_space(), 1, output_folder_name);
+
+  // ====================================================
+  //            Custom wall initialization
+  // ====================================================
+  auto x_w = wall->slicePosition();
+  auto u_w = wall->sliceVelocity();
+  auto normal_w = wall->sliceNormal();
+  auto E_w = wall->sliceYoungsMod();
+  auto nu_w = wall->slicePoissonsRatio();
+  auto G_w = wall->sliceShearMod();
+```
+
+If the created class is a reference, then:
+```cpp
+    template <class ParticleType, class NeighListType, class ParallelType>
+    void computeForceFullParticleParticle(ParticleType& particles,
+                                          const NeighListType& neigh_list,
+                                          ParallelType& neigh_op_tag,
+                                          double dt)
+    {
+      auto x = particles.slicePosition();
+      auto u = particles.sliceVelocity();
+      auto au = particles.sliceAcceleration();
+      auto force = particles.sliceForce();
+      auto torque = particles.sliceTorque();
+      auto omega = particles.sliceOmega();
+      auto m = particles.sliceMass();
+```

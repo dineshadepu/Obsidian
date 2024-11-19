@@ -27,7 +27,7 @@
 
 1. CabanaDEM: MPI, particle triangle intersection
 2. Ray tracing, Blender
-3. Bevy-rust, unreal, unity
+3. Bevy-rust, unreal, unity, avian
 4. FEM-DEM
 
 ## Movie making

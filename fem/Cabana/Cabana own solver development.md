@@ -41,6 +41,7 @@ It has following steps:
 8. [ ] How to take inputs from an input file, write a test
 9. [ ] Write a final example showing the full implementation which solves the problem
 10. [ ] Use automan to automate the results
+11. [ ] Write force class methods based on the integrator
 
 
 # Step 1: Setup the package
@@ -48,13 +49,13 @@ It has following steps:
 
 Provided the problem statement above, we know what properties our particles need to have. They are as following
 
-Todo: Draw figure with the governing equations, and the properties needed, like kind of an extraction. 
+Todo: Draw figure with the governing equations, and the properties needed, like kind of an extraction.
 
-With that, we want to create a basic repo, which supports quick compilation without thinking about the hassle of setting up the repository, which has, tests, make file, examples. 
+With that, we want to create a basic repo, which supports quick compilation without thinking about the hassle of setting up the repository, which has, tests, make file, examples.
 
-As a basic first point, we will see how we can have a particle class, an example supporting on how to use this particle class, a test suite ready for you to use. 
+As a basic first point, we will see how we can have a particle class, an example supporting on how to use this particle class, a test suite ready for you to use.
 
-The repository with the following commit at https://github.com/dineshadepu/Cabana_package_template/tree/08e5625f3c6ecb4a54f597faeb3c3e7faef3ff76, we can see the starting point. 
+The repository with the following commit at https://github.com/dineshadepu/Cabana_package_template/tree/08e5625f3c6ecb4a54f597faeb3c3e7faef3ff76, we can see the starting point.
 The files at this point needed can be seen in a tree view:
 ```bash
  dineshadepu@MacOS
@@ -84,7 +85,7 @@ The files at this point needed can be seen in a tree view:
     └── tstParticlesCreation.hpp
 ```
 
-One need not touch the following files, but need to add/edit files to their package as they 
+One need not touch the following files, but need to add/edit files to their package as they
 develop:
 ```bash
 ├── CMakeLists.txt [NO]
@@ -111,7 +112,7 @@ develop:
 ```
 
 We don't need to change the `CMake` files much either, if we add an example or a source file or a
-test, we will just add a line to the corresponding `CMake` file in that folder.  This act will be 
+test, we will just add a line to the corresponding `CMake` file in that folder.  This act will be
 demonstrated further as we go deep in the tutorial.
 
 
@@ -179,7 +180,7 @@ if(CabanaNewPkg_ENABLE_TESTING)
 endif()
 
 ```
-A more detailed explanation of this cmakefile is given in Cabana basic notes. This file stays the same, and one needs to change "CabanaNewPkg" to their corresponding package name, such as, "CabanaDEM" or "CabanaPD". 
+A more detailed explanation of this cmakefile is given in Cabana basic notes. This file stays the same, and one needs to change "CabanaNewPkg" to their corresponding package name, such as, "CabanaDEM" or "CabanaPD".
 
 To compile this package, we need to follow these steps:
 
@@ -218,27 +219,27 @@ TEST_BINARIES := $(shell find $(BUILD_DIR) -type f -perm +111 -name "*test*")
 # Target to list all test binaries
 .PHONY: list_tests
 list_tests:
-	@echo "Test binaries found:"
-	@for test in $(TEST_BINARIES); do echo $$test; done
+    @echo "Test binaries found:"
+    @for test in $(TEST_BINARIES); do echo $$test; done
 
 # Target to run all test binaries
 .PHONY: run_tests
 run_tests:
-	@echo "Running all test binaries..."
-	@for test in $(TEST_BINARIES); do \
-	    echo "Running $$test"; \
-	    $$test; \
-	done
+    @echo "Running all test binaries..."
+    @for test in $(TEST_BINARIES); do \
+        echo "Running $$test"; \
+        $$test; \
+    done
 ```
 
-with this makefile, one can run the tests by executing 
+with this makefile, one can run the tests by executing
 ```bash
 make run_tests
 ```
-command in the build directory. 
+command in the build directory.
 
-In the next section we will see how to add more properties to our particle class, and how to 
-initialise the particles with different configurations. Write corresponding tests to make sure our particle array is working fine. 
+In the next section we will see how to add more properties to our particle class, and how to
+initialise the particles with different configurations. Write corresponding tests to make sure our particle array is working fine.
 
 # Step 2: Create your particle class
 #cabana/setup_new_package
@@ -246,7 +247,7 @@ initialise the particles with different configurations. Write corresponding test
 The updated code for this section can be browsed at the following commit:
 https://github.com/dineshadepu/Cabana_package_template/tree/3e2f78278438ee5ce4aaf81a09133c5ac46d495f
 
-As a first step create your own particle class, where it has properties what each particle should 
+As a first step create your own particle class, where it has properties what each particle should
 have. From the governing equations, we can see our particles need the following properties
 
 Todo: Draw a figure
@@ -293,11 +294,11 @@ The types,  `aosoa_double_type, aosoa_vec_double_type` are defined as follows:
 In order to access them and able to change, we need a public accessor, a sample public accessor looks like:
 ```cpp
   public:
-	// returns access with constant access
+    // returns access with constant access
     auto sliceMass() {
       return Cabana::slice<0>( _m, "mass" );
     }
-	// returns access with constant access
+    // returns access with constant access
     auto sliceMass() const
     {
       return Cabana::slice<0>( _m, "mass" );
@@ -319,13 +320,13 @@ We want to add more particles to our existing particles, this is done by using t
       _force.resize( n );
     }
 ```
-It is essential one needs to add all the properties to the above method to in order to resize the 
+It is essential one needs to add all the properties to the above method to in order to resize the
 array size.
 
 With this `particle` class, lets see how to use it and create our particles in a siimulation.
 
 ## Step 2.1: Using the particle class
-In the example, first select the execution and memory space. Then use the `Particles` class to 
+In the example, first select the execution and memory space. Then use the `Particles` class to
 create the particles, as follows:
 ```cpp
   using exec_space = Kokkos::OpenMP;
@@ -361,7 +362,7 @@ the `updateParticles` method of the `Particles` class:
   particles->updateParticles( exec_space{}, particles_init_functor );
 ```
 
-However it is essential, one needs to make sure this initializer works across the architechtures, 
+However it is essential, one needs to make sure this initializer works across the architechtures,
 and the initialiser is parallel.
 
 Sometimes, we want to resize the number of particles, either reduce them or increase them:
@@ -378,7 +379,7 @@ This can be achieved by the `resize` method functionality as:
     u_p_20( i, 0 ) = 0.;
   }
 ```
-It is essential, that we need to again get new pointers to the properties of the particles, since they get outdated once we resize.  
+It is essential, that we need to again get new pointers to the properties of the particles, since they get outdated once we resize.
 
 
 
@@ -386,7 +387,7 @@ It is essential, that we need to again get new pointers to the properties of the
 # Step 3: Output file
 #cabana/write_output
 
-The code files corresponding to this section development can be seen at https://github.com/dineshadepu/Cabana_package_template/tree/79c6f80e81ce0f5e0fe0150ee306ec499ed0c54f commit. 
+The code files corresponding to this section development can be seen at https://github.com/dineshadepu/Cabana_package_template/tree/79c6f80e81ce0f5e0fe0150ee306ec499ed0c54f commit.
 
 In order to view the data of the particles we need to output the particles, this is done through hdf5 files. To the existing `Particles` class, we add the following method:
 
@@ -400,10 +401,10 @@ In order to view the data of the particles we need to output the particles, this
 #ifdef Cabana_ENABLE_HDF5
       Cabana::Experimental::HDF5ParticleOutput::writeTimeStep(
                                                 h5_config,
-	                                            _output_folder_name+"/particles",
-												// "particles",
-												MPI_COMM_WORLD,
-												output_step,
+                                                _output_folder_name+"/particles",
+                                                // "particles",
+                                                MPI_COMM_WORLD,
+                                                output_step,
                                                 output_time,
                                                 _no_of_particles,
                                                 slicePosition(),
@@ -465,7 +466,7 @@ These test, if the folder and the hdf5 files created successfully.
 From these tests, we can see, an output folder can be created either by a separate method assigned, or through while creating the Particles. That is:
 ```cpp
 auto particles = std::make_shared<
-	CabanaNewPkg::Particles<memory_space, DIM>>(exec_space(), 1);
+    CabanaNewPkg::Particles<memory_space, DIM>>(exec_space(), 1);
 particles->set_output_folder("test_particles_output_folder_creation_3_output");
 ```
 or through the initializer:
@@ -481,54 +482,54 @@ While, at a given time, output can be written by:
 particles->output(total_steps/step, time);
 ```
 
-# Step 5:  Write force interaction 
+# Step 5:  Write force interaction
 
-The force acting on particle with index $i$ due to its neighbours can be computed from a nested 
+The force acting on particle with index $i$ due to its neighbours can be computed from a nested
 for loop:
 
-```python 
+```python
 for i in range(len(particles)):
-	for j in range(len(particles)):
-		# Exclude self particle in force computation
-		if i != j:
-			dx = x[i][0] - x[j][0]
-			dy = x[i][1] - x[j][1]
-			dz = x[i][2] - x[j][2]
-			dist = sqrt(dx**2. + dy**2 + dz**2.)
-			force[i][0] += m[j] * dist 
-			force[i][1] += m[j] * dist
-			force[i][2] += m[j] * dist
+    for j in range(len(particles)):
+        # Exclude self particle in force computation
+        if i != j:
+            dx = x[i][0] - x[j][0]
+            dy = x[i][1] - x[j][1]
+            dz = x[i][2] - x[j][2]
+            dist = sqrt(dx**2. + dy**2 + dz**2.)
+            force[i][0] += m[j] * dist
+            force[i][1] += m[j] * dist
+            force[i][2] += m[j] * dist
 ```
 
 However, we don't need to loop over all the particles, we only need particles which are in close proximity, and this depends on the numerical scheme we usually employ. Keeping that in mind, our computations would get faster, and the modified code would look something like:
 
-```python 
+```python
 for i in range(len(particles)):
-	for j in neighbours(i):
-		# Exclude self particle in force computation
-		dx = x[i][0] - x[j][0]
-		dy = x[i][1] - x[j][1]
-		dz = x[i][2] - x[j][2]
-		dist = sqrt(dx**2. + dy**2 + dz**2.)
-		force[i][0] += m[j] * dist 
-		force[i][1] += m[j] * dist
-		force[i][2] += m[j] * dist
+    for j in neighbours(i):
+        # Exclude self particle in force computation
+        dx = x[i][0] - x[j][0]
+        dy = x[i][1] - x[j][1]
+        dz = x[i][2] - x[j][2]
+        dist = sqrt(dx**2. + dy**2 + dz**2.)
+        force[i][0] += m[j] * dist
+        force[i][1] += m[j] * dist
+        force[i][2] += m[j] * dist
 ```
 
-But, how would this translate when we are writing code in `Cabana`?  With consideration with the computation of neighbours, we 
+But, how would this translate when we are writing code in `Cabana`?  With consideration with the computation of neighbours, we
 
 ```cpp
   auto positions = particles->slicePosition();
   auto forces = particles->sliceForce();
   auto force_kernel = KOKKOS_LAMBDA( const int i, const int j )
     {
-		dx = positions( i, 0 ) - positions( j, 0 );
-		dy = positions( i, 0 ) - positions( j, 0 );
-		dz = positions( i, 0 ) - positions( j, 0 );
-		dist = sqrt(dx*dx + dy*dz + dz*dz);
-		forces (i, 0) += m[j] * dist ;
-		forces (i, 1) += m[j] * dist;
-		forces (i, 2) += m[j] * dist;
+        dx = positions( i, 0 ) - positions( j, 0 );
+        dy = positions( i, 0 ) - positions( j, 0 );
+        dz = positions( i, 0 ) - positions( j, 0 );
+        dist = sqrt(dx*dx + dy*dz + dz*dz);
+        forces (i, 0) += m[j] * dist ;
+        forces (i, 1) += m[j] * dist;
+        forces (i, 2) += m[j] * dist;
     };
 
   Kokkos::RangePolicy<exec_space> policy( 0, positions.size() );
@@ -547,14 +548,14 @@ One important thing we need to look here is the neighbour parallel for loop prov
 ```
 
 The `policy`, `force_kernel, verlet_list` stays the same, but
-`Cabana::FirstNeighborsTag(), Cabana::SerialOpTag()` can have different values. Here, 
-`Cabana::FirstNeighborsTag()` implies we only consider the first neighbours of index $i$ , 
-`Cabana::SecondNeighborsTag()` implies we consider the neighbours of $i$ and their neighbours 
-as well. For the codes we write, we don't need `Cabana::SecondNeighborsTag()`. 
+`Cabana::FirstNeighborsTag(), Cabana::SerialOpTag()` can have different values. Here,
+`Cabana::FirstNeighborsTag()` implies we only consider the first neighbours of index $i$ ,
+`Cabana::SecondNeighborsTag()` implies we consider the neighbours of $i$ and their neighbours
+as well. For the codes we write, we don't need `Cabana::SecondNeighborsTag()`.
 `Cabana::SerialOpTag()` only parallelize the top level for loop but not the $j$ one. But if we change it to `Cabana::TeamOpTag()` the second for loop will also be paralleled. In our implementations we don't consider parallelizing the second for loop.
 
-Conclusion is, in all our numerical implementations, we would only consider the template as 
-given above, just the `force_kernel` changes depending on the physics and the kernel name. 
+Conclusion is, in all our numerical implementations, we would only consider the template as
+given above, just the `force_kernel` changes depending on the physics and the kernel name.
 
 An example, of force computation, of the above implementation is tested in the example at
 https://github.com/dineshadepu/Cabana_package_template/commit/dc2af0f2326fde6b05e3851327090803113101ad, the example is https://github.com/dineshadepu/Cabana_package_template/blob/dc2af0f2326fde6b05e3851327090803113101ad/examples/test_03_compute_velocity_accelerations.cpp
@@ -567,7 +568,7 @@ While creating the particles, force objects, we should make them as a shared poi
 ```cpp
   auto force = std::make_shared<
     CabanaDEM::Force<exec_space>>(cor_pp_inp, cor_pw_inp,
-				  friction_pp_inp, friction_pw_inp);
+                  friction_pp_inp, friction_pw_inp);
 
   // ====================================================
   //                 Particle generation
@@ -590,16 +591,16 @@ While we pass these to functions, to operate on them, the function signature rea
   //---------------------------------------------------------------------------//
   // Creation method.
   template <class MemorySpace, class InputsType, class ParticleType, class WallType,
-	    class ForceModel>
+        class ForceModel>
   auto createSolverDEM(InputsType inputs,
-		       std::shared_ptr<ParticleType> particles,
-		       std::shared_ptr<WallType> wall,
-		       std::shared_ptr<ForceModel> force,
-		       double delta)
+               std::shared_ptr<ParticleType> particles,
+               std::shared_ptr<WallType> wall,
+               std::shared_ptr<ForceModel> force,
+               double delta)
   {
     return std::make_shared<
       SolverDEM<MemorySpace, InputsType, ParticleType, WallType, ForceModel>>(inputs, particles,
-									      wall, force, delta);
+                                          wall, force, delta);
   }
 
 }
@@ -607,9 +608,9 @@ While we pass these to functions, to operate on them, the function signature rea
 With the above function, we call it with the following syntax:
 ```cpp
   auto cabana_dem = CabanaDEM::createSolverDEM<memory_space>( inputs, particles, wall,
-							      force, 3. * radius_p_inp);
+                                  force, 3. * radius_p_inp);
 ```
-Since, `particles` and `force` are `shared_ptr`, we can simply pass them without any pointer invocations. 
+Since, `particles` and `force` are `shared_ptr`, we can simply pass them without any pointer invocations.
 
 For functions, such as which handle the force, has the following function signature:
 ```cpp
@@ -627,10 +628,10 @@ For functions, such as which handle the force, has the following function signat
 
 Here, we need references to the `particles` and `force`, but we have our `particles` ad `force` as `shared_ptr`. In order to call this function, we write the following syntax:
 ```cpp
-	  computeForceParticleParticleInfiniteWall( *force, *particles, *wall,
-						    *neighbors, neigh_iter_tag{}, dt );
+      computeForceParticleParticleInfiniteWall( *force, *particles, *wall,
+                            *neighbors, neigh_iter_tag{}, dt );
 ```
-Please note `*class_name` here. The take away is, to pass by reference a shared_ptr is to use a `*class_name`. Further, if a function signature uses a reference, then we can simply pass, these local references, as these are already references. 
+Please note `*class_name` here. The take away is, to pass by reference a shared_ptr is to use a `*class_name`. Further, if a function signature uses a reference, then we can simply pass, these local references, as these are already references.
 ```cpp
     template <class ParticleType, class NeighListType, class ParallelType>
     void computeForceFullParticleParticle(ParticleType& particles,

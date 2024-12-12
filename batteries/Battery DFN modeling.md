@@ -10,9 +10,6 @@ $$
 $$
 
 $$
-\left.\frac{\partial c_{s}(r,t)}{\partial r}\right|_{r=0}=0,\\
-$$
-$$
 -D_{s}\left.\frac{\partial c_{s}(r,t)}{\partial r}\right|_{r=R_{s}}= j_{\mathrm{Li}}(x,t)
 $$
 $$
@@ -51,7 +48,8 @@ $$
 $$
 \frac{\partial}{\partial x}\left(\kappa_{\mathrm{e}}
 \varepsilon_{\mathrm{e}}^{\mathrm{b}}
-\frac{\partial\phi_{\mathrm{e}}(x,t)}{\partial x}+\kappa_{\mathrm{e}}\mathrm{e}_{\mathrm{e}}^{\mathrm{b}}\nu\frac{2R T(t)}{F}\frac{\partial\mathrm{ln}c_{\mathrm{e}}(x,t)}{\partial x}\right)=-a_{s}F j_{\mathrm{Li}}(x,t),
+\frac{\partial\phi_{\mathrm{e}}(x,t)}{\partial x}+\kappa_{\mathrm{e}}
+\varepsilon_{e}^{\mathrm{b}}\nu\frac{2R T(t)}{F}\frac{\partial\mathrm{ln}c_{\mathrm{e}}(x,t)}{\partial x}\right)=-a_{s}F j_{\mathrm{Li}}(x,t),
 $$
 
 
@@ -82,5 +80,5 @@ $$
 Battery voltage
 
 $$
-V(t)=\phi_{s}(L,t)-\phi_{s}(0,t)-{\frac{R_{\mathrm{ex}}}{A_{\mathrm{surf}}}}I_{\mathrm{app}}(t)~.
+V(t)=\phi_{s}(L,t)-\phi_{s}(0,t)-{\frac{R_{\mathrm{cc}}}{A_{\mathrm{surf}}}}I_{\mathrm{app}}(t)~.
 $$

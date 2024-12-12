@@ -4,53 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "0282d477aeb159b3",
+        "id": "fcb2560f7075aeb0",
         "type": "tabs",
         "children": [
           {
-            "id": "1ae6ccffd80c90c0",
+            "id": "24232671827deb97",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "pybamm/PyBaMM single phase battery modeling.md",
+                "file": "moose/Tutorial.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PyBaMM single phase battery modeling"
-            }
-          },
-          {
-            "id": "96a1156d4f593acc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Battery modelling.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Battery modelling"
-            }
-          },
-          {
-            "id": "8779a1ece95dc50f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Battery DFN modeling.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Battery DFN modeling"
+              "title": "Tutorial"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,8 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "6077814c21bf6eeb",
@@ -193,11 +163,13 @@
       "latex-ocr:LatexOCR": false
     }
   },
-  "active": "8779a1ece95dc50f",
+  "active": "24232671827deb97",
   "lastOpenFiles": [
+    "moose/Installation.md",
+    "moose/Tutorial.md",
+    "Battery DFN modeling.md",
     "Pasted image 20241125152553.png",
     "Battery modelling.md",
-    "Battery DFN modeling.md",
     "Generating latex from images.md",
     "Battery basics.md",
     "Goals.md",
@@ -207,8 +179,6 @@
     "pybamm/PyBaMM Composite modeling.md",
     "pybamm/PyBaMM single phase battery modeling.md",
     "Pasted image 20241019184311.png",
-    "moose/Tutorial.md",
-    "moose/Installation.md",
     "Battery Plett 5710/Battery boot camp.md",
     "Battery Plett 5710/battey_Plett_5710.svg",
     "Screenshot from 2024-10-30 15-55-16.png",

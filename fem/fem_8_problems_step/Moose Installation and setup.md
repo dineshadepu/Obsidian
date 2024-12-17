@@ -35,33 +35,24 @@ cd ~/projects/moose/test
 
 This way one needs update both `conda` and local git folder, in order to have `moose` installed.
 
+# How to write a kernel
 
+## The header file
 
+1. Import the requisite already existing kernel header file
+2. declare the constructor (Public method)
+3. declare a function to validate the parameters (Public method)
+4. declare a method to compute the residual at one quadrature point. This will further be defined in the .C file. (Protected method)
+5. declare a method to compute the Jacobian at one quadrature point. This will further be defined in the .C file. (Protected method)
+6. Define the class variables, which are used in the computation of the kernel values (private)
 
+## The source file
 
+We need to ensure the following functions are implemented, while implementing our own code in `MOOSE`.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. Register the class in the app
+2. Define the valid parameters for the kernel and assign default values if possible
+3. Initialise the Class (this is similar to $__init__$  in python)
+4. computeQpResidual, i.e., compute the quadrature point residual
+4. computeQpJacobian, i.e., compute the quadrature point jacobian
 
